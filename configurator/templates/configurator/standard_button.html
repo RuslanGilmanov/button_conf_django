@@ -1,0 +1,54 @@
+{% extends 'configurator/base.html' %}
+{% load static %}
+
+{% block title %}
+  {{ 'Standard button' }}
+{% endblock %}
+
+{% block content %}
+
+
+  <header>
+    <h1>Standard button</h1>
+  </header><br>
+
+<div class="background-container">
+  <form method="POST">
+    {% csrf_token %}
+    <p>
+        {{ form.button_body.label_tag }}
+        {{ form.button_body }}
+    </p>
+    <p>
+        {{ form.pressel_type.label_tag }}
+        {{ form.pressel_type }}
+    </p>
+    <p>
+        {{ form.contact_arr.label_tag }}
+        {{ form.contact_arr }}
+    </p>
+    <button type="submit">Submit</button>
+  </form><br>
+
+  {% if button_code %}
+
+    <div>{{ button_code }}</div>
+
+  {% endif %}
+
+</div>
+
+
+
+<style>
+    .background-container {
+      background-position: center;
+      background-attachment: scroll;
+      background-repeat: no-repeat;
+      background-size: 50% 100vh;
+      background-image: url({% static 'images/Selection.jpg' %});
+    }
+  </style>
+
+
+{% endblock %}

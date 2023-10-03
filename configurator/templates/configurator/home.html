@@ -1,0 +1,51 @@
+{% extends 'configurator/base.html' %}
+{% load static %}
+
+{% block title %}
+  {{ 'Button configurator' }}
+{% endblock %}
+
+{% block content %}
+  <header>
+    <h1>Button Configurator</h1>
+  </header>
+
+  <div class="background-container">
+    <!-- Content that will have the background image -->
+    <div>
+      <label for="US91" class="labelImage">Standard:</label><br>
+      <p><a href="{% url 'stand-butt' %}">
+        <img src="{% static 'images/US91.png' %}" name="US91" class="img-thumbnail" alt="US91 image">
+        </a>
+      </p>
+    </div>
+    <div>
+      <label for="Plus" class="labelImage">M20 Range:</label><br>
+      <p><a href="#">
+        <img src="{% static 'images/M20 REB_white.png' %}" name="Plus" class="img-thumbnail" alt="Plus image">
+        </a></p>
+    </div>
+    <div>
+      <label for="Hygiene Plus" class="labelImage">Hygiene Plus:</label><br>
+      <p><a href="#">
+        <img src="{% static 'images/AB_white.jpg' %}" name="Hygiene Plus" class="img-thumbnail" alt="Hygiene Plus image">
+        </a></p>
+    </div>
+    <div>
+      <label for="Jumbo" class="labelImage">Jumbo:</label><br>
+      <p><a href="#">
+        <img src="{% static 'images/US90_Jumbo.jpg' %}" name="Jumbo" class="img-thumbnail" alt="Jumbo image">
+        </a></p>
+    </div>
+  </div>
+
+  <style>
+    .background-container {
+      background-position: center;
+      background-attachment: scroll;
+      background-repeat: no-repeat;
+      background-size: 40%;
+      background-image: url({% static 'images/Index_image.jpg' %});
+    }
+  </style>
+{% endblock %}
