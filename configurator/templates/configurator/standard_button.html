@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <header>
     <h1>Standard button</h1>
@@ -27,7 +27,31 @@
         {{ form.contact_arr.label_tag }}
         {{ form.contact_arr }}
     </p>
-    <button type="submit">Submit</button>
+    <p>
+        {{ form.led_voltage.label_tag }}
+        {{ form.led_voltage }}
+    </p>
+    <p>
+        {{ form.led_color.label_tag }}
+        {{ form.led_color }}
+    </p>
+    <p>
+        {{ form.surround_type.label_tag }}
+        {{ form.surround_type }}
+    </p>
+    <p>
+        {{ form.surround_color.label_tag }}
+        {{ form.surround_color }}
+    </p>
+    <p>
+        {{ form.pressel_finish.label_tag }}
+        {{ form.pressel_finish }}
+    </p>
+    <p>
+        {{ form.mould_color.label_tag }}
+        {{ form.mould_color }}
+    </p>
+    <button type="submit">Generate code</button>
   </form><br>
 
   {% if button_code %}
@@ -38,8 +62,6 @@
 
 </div>
 
-
-
 <style>
     .background-container {
       background-position: center;
@@ -49,6 +71,5 @@
       background-image: url({% static 'images/Selection.jpg' %});
     }
   </style>
-
 
 {% endblock %}
