@@ -15,51 +15,48 @@
 <div class="background-container">
   <form method="POST">
     {% csrf_token %}
-    <p>
-        {{ form.button_body.label_tag }}
-        {{ form.button_body }}
-    </p>
-    <p>
-        {{ form.pressel_type.label_tag }}
-        {{ form.pressel_type }}
-    </p>
-    <p>
-        {{ form.contact_arr.label_tag }}
-        {{ form.contact_arr }}
-    </p>
-    <p>
-        {{ form.led_voltage.label_tag }}
-        {{ form.led_voltage }}
-    </p>
-    <p>
-        {{ form.led_color.label_tag }}
-        {{ form.led_color }}
-    </p>
-    <p>
-        {{ form.surround_type.label_tag }}
-        {{ form.surround_type }}
-    </p>
-    <p>
-        {{ form.surround_color.label_tag }}
-        {{ form.surround_color }}
-    </p>
-    <p>
-        {{ form.pressel_finish.label_tag }}
-        {{ form.pressel_finish }}
-    </p>
-    <p>
-        {{ form.mould_color.label_tag }}
-        {{ form.mould_color }}
-    </p>
+    <div class="form-group">
+      <label for="button_body">{{ form.button_body.label_tag }}</label>
+      {{ form.button_body }}
+    </div>
+    <div class="form-group">
+      <label for="contact_arr">{{ form.contact_arr.label_tag }}</label>
+      {{ form.contact_arr }}
+    </div>
+    <div class="form-group">
+      <label for="led_voltage">{{ form.led_voltage.label_tag }}</label>
+      {{ form.led_voltage }}
+    </div>
+    <div class="form-group">
+      <label for="led_color">{{ form.led_color.label_tag }}</label>
+      {{ form.led_color }}
+    </div>
+    <div class="form-group">
+      <label for="surround_type">{{ form.surround_type.label_tag }}</label>
+      {{ form.surround_type }}
+    </div>
+    <div class="form-group">
+      <label for="surround_color">{{ form.surround_color.label_tag }}</label>
+      {{ form.surround_color }}
+    </div>
+    <div class="form-group">
+      <label for="pressel_type">{{ form.pressel_type.label_tag }}</label>
+      {{ form.pressel_type }}
+    </div>
+    <div class="form-group">
+      <label for="pressel_finish">{{ form.pressel_finish.label_tag }}</label>
+      {{ form.pressel_finish }}
+    </div>
+    <div class="form-group">
+      <label for="mould_color">{{ form.mould_color.label_tag }}</label>
+      {{ form.mould_color }}
+    </div>
     <button type="submit">Generate code</button>
   </form><br>
 
   {% if button_code %}
-
     <div>{{ button_code }}</div>
-
   {% endif %}
-
 </div>
 
 <style>
@@ -67,9 +64,18 @@
       background-position: center;
       background-attachment: scroll;
       background-repeat: no-repeat;
-      background-size: 50% 100vh;
+      background-size: 50%;
       background-image: url({% static 'images/Selection.jpg' %});
+      margin-left: 30px; /* Adjust the margin as needed */
     }
-  </style>
-
+    
+    .form-group {
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    .form-group label {
+      display: block;
+    }
+</style>
 {% endblock %}
