@@ -45,9 +45,10 @@ def standard_button(request):
     return render(request, 'configurator/standard_button.html', context)
 
 
-def get_pressel_types(request):
+def get_contact_type(request):
     button_body = request.GET.get('button_body')
+    print(button_body)
     # Perform logic to retrieve pressel types based on the selected button_body
     if button_body == 'Compact 2' or button_body == 'Compact 3' or button_body == 'Compact 3P':
-        pressel_types = {'type1': 'Type 1', 'type2': 'Type 2'}
-    return JsonResponse(pressel_types)
+        contact_types = ["2 x N/O", "2 x N/C", "1 x N/O 1 x N/C"]
+        return JsonResponse({'contact_types': contact_types})
