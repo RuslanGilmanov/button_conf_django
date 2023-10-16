@@ -17,11 +17,11 @@
     {% csrf_token %}
     <div class="form-group">
       <label for="button_body">{{ form.button_body.label_tag }}</label>
-      {{ form.button_body }}
+      <div id="button_body">{{ form.button_body }}</div>
     </div>
     <div class="form-group">
       <label for="contact_arr">{{ form.contact_arr.label_tag }}</label>
-      {{ form.contact_arr }}
+      <div id="contact_type">{{ form.contact_arr }}</div>
     </div>
     <div class="form-group">
       <label for="led_voltage">{{ form.led_voltage.label_tag }}</label>
@@ -64,7 +64,7 @@
       background-position: center;
       background-attachment: scroll;
       background-repeat: no-repeat;
-      background-size: 50%;
+      background-size: 40%;
       background-image: url({% static 'images/Selection.jpg' %});
       margin-left: 30px; /* Adjust the margin as needed */
     }
@@ -78,4 +78,25 @@
       display: block;
     }
 </style>
+
+<script>
+$(document).ready(function () {
+    $("#button_body").change(function () {
+        var buttonBody = $(this).val();
+        $.ajax({
+            url: "{% url 'contact-type' %}",
+            data: {'button_body': buttonBody},
+            dataType: 'json',
+            success: function (data) {
+                var contactTypeDropdown = $("#contact_type");
+                contactTypeDropdown.empty();
+                $.each(data, function (key, value) {
+                    contactTypeDropdown.append($('<option></option>').attr('value', key).text(value));
+                });
+            }
+        });
+    });
+});
+</script>
+
 {% endblock %}
