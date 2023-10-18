@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseBadRequest
 from .forms import StandardButtonForm, BUTTON_BODIES
 from .models import ButtonBody, PresselType
 
@@ -49,6 +49,9 @@ def get_contact_type(request):
     button_body = request.GET.get('button_body')
     print(button_body)
     # Perform logic to retrieve pressel types based on the selected button_body
-    if button_body == 'Compact 2' or button_body == 'Compact 3' or button_body == 'Compact 3P':
+    if button_body == '3' or button_body == 'Compact 3' or button_body == 'Compact 3P':
         contact_types = ["2 x N/O", "2 x N/C", "1 x N/O 1 x N/C"]
         return JsonResponse({'contact_types': contact_types})
+    else:
+        # If no contact types are available, return a suitable response, e.g., a 400 Bad Request.
+        return HttpResponseBadRequest("Invalid button body selection")
