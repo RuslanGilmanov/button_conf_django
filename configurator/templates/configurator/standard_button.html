@@ -21,7 +21,9 @@
     </div>
     <div class="form-group">
       <label for="contact_arr">{{ form.contact_arr.label_tag }}</label>
-      <div id="contact_type">{{ form.contact_arr }}</div>
+      <select id="contact_type">
+
+      </select>
     </div>
     <div class="form-group">
       <label for="led_voltage">{{ form.led_voltage.label_tag }}</label>
@@ -81,7 +83,7 @@
 
 <script>
 $(document).ready(function () {
-    $("#button_body").change(function () {
+    $("#button_body select").change(function () {
         var buttonBody = $(this).val();
         $.ajax({
             url: "{% url 'contact-type' %}",
