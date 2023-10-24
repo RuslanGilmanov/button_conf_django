@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseBadRequest
 from .forms import StandardButtonForm, BUTTON_BODIES
-from .models import ButtonBody, PresselType
 
 
 def index(request):
@@ -9,7 +8,7 @@ def index(request):
         'title': 'Home page',
         # 'buttons': 'buttons'
     }
-    return render(request, 'configurator/home.html', context)
+    return render(request, 'configurator/index.html', context)
 
 
 def standard_button(request):
@@ -17,7 +16,8 @@ def standard_button(request):
     if request.method == 'POST':
         form = StandardButtonForm(request.POST)
 
-        button_body = request.GET.get('button_body')
+        contacts = request.POST.get('contact_arr')
+        print(contacts)
 
         if form.is_valid():
             selected_body = form.cleaned_data['button_body']
@@ -45,13 +45,12 @@ def standard_button(request):
 
 def get_contact_type(request):
     button_body = request.GET.get('button_body')
-    print(button_body)
     # Perform logic to retrieve pressel types based on the selected button_body
     if button_body == '3' or button_body == '8' or button_body == '7':
-        contact_types = {'type 1': "2 x N/O", 'type 2': "2 x N/C", 'type 3': "1 x N/O 1 x N/C"}
+        contact_types = {"0": "Select contact type", "1": "2 x N/O", "2": "2 x N/C", "3": "1 x N/O 1 x N/C"}
         return JsonResponse(contact_types)
     elif button_body == '4':
-        contact_types = {'type 4': "1 x N/O (Micro AMP)"}
+        contact_types = {'5': "1 x N/O (Micro AMP)"}
         return JsonResponse(contact_types)
     else:
         # If no contact types are available, return a suitable response, e.g., a 400 Bad Request.
