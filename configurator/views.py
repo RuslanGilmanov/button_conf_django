@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseBadRequest
-from .forms import StandardButtonForm, BUTTON_BODIES
+from .forms import StandardButtonForm
+from .models import ButtonBody
 
 
 def index(request):
@@ -41,6 +42,12 @@ def standard_button(request):
         'form': form
     }
     return render(request, 'configurator/standard_button.html', context)
+
+
+def load_contact_types(request):
+    button_body_id = request.GET.get('button_body')
+    button_bodies = ButtonBody.objects.filter(button_body_id=button_body_id)
+    return render(request, 'contact_options.html', {"button_bodies": button_bodies})
 
 
 def get_contact_type(request):
