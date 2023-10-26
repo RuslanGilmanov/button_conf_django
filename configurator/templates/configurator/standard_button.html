@@ -17,11 +17,11 @@
     {% csrf_token %}
     <div class="form-group">
       {{ form.button_body.label_tag }}
-      <div id="id_button_body">{{ form.button_body }}</div>
+      {{ form.button_body }}
     </div>
     <div class="form-group">
-      {{ form.contact_arr.label_tag }}
-      {{ form.contact_arr }}
+      {{ form.contact_type.label_tag }}
+      {{ form.contact_type }}
     </div>
     <div class="form-group">
       {{ form.led_voltage.label_tag }}
