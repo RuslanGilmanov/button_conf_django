@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseBadRequest
 from .forms import StandardButtonForm
-from .models import ButtonBody
+from .models import ContactType, ButtonBody
 
 
 def index(request):
@@ -45,15 +45,16 @@ def standard_button(request):
 
 
 def load_contact_types(request):
-    button_body_id = request.GET.get('button_body')
-    button_bodies = ButtonBody.objects.filter(button_body_id=button_body_id)
-    return render(request, 'contact_options.html', {"button_bodies": button_bodies})
+    body_id = request.GET.get('button_body')
+    button_body = ButtonBody.objects.get(id=body_id)
+    contacts = ContactType.objects.filter(button_body=button_body)
+    return render(request, 'contact_options.html', {"contacts": contacts})
 
 
 def get_contact_type(request):
     button_body = request.GET.get('button_body')
     # Perform logic to retrieve pressel types based on the selected button_body
-    if button_body == '3' or button_body == '8' or button_body == '7':
+    if button_body == 1 or button_body == 2 or button_body == 3:
         contact_types = {"0": "Select contact type", "1": "2 x N/O", "2": "2 x N/C", "3": "1 x N/O 1 x N/C"}
         return JsonResponse(contact_types)
     elif button_body == '4':
