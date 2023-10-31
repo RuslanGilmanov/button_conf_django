@@ -17,9 +17,6 @@ def standard_button(request):
     if request.method == 'POST':
         form = StandardButtonForm(request.POST)
 
-        contacts = request.POST.get('contact_arr')
-        print(contacts)
-
         if form.is_valid():
             selected_body = form.cleaned_data['button_body']
             selected_pressel = form.cleaned_data['pressel_type']
@@ -45,10 +42,14 @@ def standard_button(request):
 
 
 def load_contact_types(request):
-    body_id = request.GET.get('button_body')
-    button_body = ButtonBody.objects.get(id=body_id)
-    contacts = ContactType.objects.filter(button_body=button_body)
-    return render(request, 'contact_options.html', {"contacts": contacts})
+    body_id = request.GET.get("button_body")
+    try:
+        button_body = ButtonBody.objects.get(id=body_id)
+        contacts = button_body.contact_types.all()
+        return render(request, 'configurator/contact_options.html', {"contacts": contacts})
+
+    except ButtonBody.DoesNotExist:
+        return JsonResponse({'error': 'ButtonBody not found'})
 
 
 def get_contact_type(request):
