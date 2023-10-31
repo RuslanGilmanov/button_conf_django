@@ -2,7 +2,6 @@ from django import forms
 from .models import (
     ButtonBody,
     ContactType,
-    ButtonBodyContactType,
     IlluminationColor,
     IlluminationVoltage,
     SurroundType,
@@ -12,7 +11,9 @@ from .models import (
 
 
 class StandardButtonForm(forms.Form):
-    button_body = forms.ModelChoiceField(queryset=ButtonBody.objects.all())
+    button_body = forms.ModelChoiceField(
+        queryset=ButtonBody.objects.all(),
+        widget=forms.Select(attrs={"hx-get": "load_contact_types/", "hx-target": "#id_contact_type"}))
     contact_type = forms.ModelChoiceField(queryset=ContactType.objects.none())
     # pressel_type = forms.ModelChoiceField(choices=PRESSEL_TYPES, label='Pressel type')
     # led_voltage = forms.ModelChoiceField(choices=LED_VOLTAGE, label='LED voltage')
