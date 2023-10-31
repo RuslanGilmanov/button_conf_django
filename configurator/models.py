@@ -12,14 +12,10 @@ class ButtonBody(models.Model):
 class ContactType(models.Model):
     contact_code = models.CharField(max_length=5)
     contact = models.CharField(max_length=50)
+    body_type = models.ManyToManyField(ButtonBody, related_name='contact_types')
 
     def __str__(self):
         return self.contact
-
-
-class ButtonBodyContactType(models.Model):
-    button_body = models.ForeignKey(ButtonBody, on_delete=models.CASCADE)
-    contact_type = models.ForeignKey(ContactType, on_delete=models.CASCADE)
 
 
 class IlluminationColor(models.Model):
