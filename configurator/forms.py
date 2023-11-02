@@ -23,3 +23,11 @@ class StandardButtonForm(forms.Form):
     # pressel_finish = forms.ModelChoiceField(choices=PRESSEL_FINISH, label='Pressel finish')
     # mould_color = forms.ModelChoiceField(choices=PRESSEL_MOULD_COLOR, label='Mould color')
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if "button_body" in self.data:
+            body_id = int(self.data.get("button_body"))
+            button_body = ButtonBody.objects.get(id=body_id)
+            self.fields["contact_type"].queryset = button_body.contact_types.all()
+
