@@ -16,14 +16,13 @@ def standard_button(request):
 
     if request.method == 'POST':
         form = StandardButtonForm(request.POST)
-
         if form.is_valid():
             selected_body = form.cleaned_data['button_body']
-            selected_pressel = form.cleaned_data['pressel_type']
-            selected_contacts = form.cleaned_data['contact_arr']
+            selected_contact = form.cleaned_data['contact_type']
+            button_body = ButtonBody.objects.filter(body=selected_body).first()
+            contact_type = ContactType.objects.filter(contact=selected_contact).first()
 
-            # button_body_code = dict(BUTTON_BODIES).get(selected_body)
-            butt_code = f"DEW BUT {selected_body}{selected_pressel}{selected_contacts}"
+            butt_code = f"DEW BUT {button_body.body_code}{contact_type.contact_code}"
             context = {
                 'title': 'Standard button',
                 'form': form,
@@ -31,6 +30,10 @@ def standard_button(request):
             }
 
             return render(request, 'configurator/standard_button.html', context)
+
+        else:
+            print(form.errors)
+
     else:
         form = StandardButtonForm()
 
