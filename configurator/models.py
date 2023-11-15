@@ -51,7 +51,7 @@ class SurroundColor(models.Model):
 
 
 class SurroundForm(models.Model):
-    shape_code = models.CharField(max_length=5)
+    form_code = models.CharField(max_length=5)
     surround_form = models.CharField(max_length=50)
 
     def __str__(self):
