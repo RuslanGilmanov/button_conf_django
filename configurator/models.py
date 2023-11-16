@@ -29,6 +29,7 @@ class IlluminationColor(models.Model):
 class IlluminationVoltage(models.Model):
     volt_code = models.CharField(max_length=5)
     voltage = models.CharField(max_length=50)
+    led_colors = models.ManyToManyField(IlluminationColor, related_name="led_voltages")
 
     def __str__(self):
         return self.voltage
