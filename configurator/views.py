@@ -81,6 +81,17 @@ def load_contact_types(request):
         return JsonResponse({'error': 'ButtonBody not found'})
 
 
+def load_colors(request):
+    led_volt_id = request.GET.get("led_voltage")
+    try:
+        led_voltage = IlluminationVoltage.objects.get(id=led_volt_id)
+        led_colors = led_voltage.led_colors.all()
+        return render(request, 'configurator/led_color_options.html', {"led_colors": led_colors})
+
+    except IlluminationVoltage.DoesNotExist:
+        return JsonResponse({'error': 'LED Voltage not found'})
+
+
 def get_contact_type(request):
     button_body = request.GET.get('button_body')
     # Perform logic to retrieve pressel types based on the selected button_body
