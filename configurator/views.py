@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseBadRequest
-from .forms import StandardButtonForm
+from .forms import StandardButtonForm, PresselForm
 from .models import (
     ContactType,
     ButtonBody,
@@ -8,8 +8,10 @@ from .models import (
     IlluminationColor,
     SurroundType,
     SurroundColor,
-    SurroundForm
+    SurroundForm,
+    Pressel
 )
+import csv
 
 
 def index(request):
@@ -62,10 +64,12 @@ def standard_button(request):
 
     else:
         form = StandardButtonForm()
+        pressel_form = PresselForm()
 
     context = {
         'title': 'Standard button',
-        'form': form
+        'form': form,
+        'pressel_form': pressel_form
     }
     return render(request, 'configurator/standard_button.html', context)
 
@@ -104,3 +108,24 @@ def get_contact_type(request):
     else:
         # If no contact types are available, return a suitable response, e.g., a 400 Bad Request.
         return HttpResponseBadRequest("Invalid button body selection")
+
+
+# def read_legends_from_scv():
+#     legend_codes = []
+#
+#     with open('configurator/static/legends/Legend Codes_csv.csv', newline='') as csvfile:
+#         csv_reader = csv.DictReader(csvfile)
+#         for row in csv_reader:
+#             legend_codes.append(row)
+#
+#     return legend_codes
+
+def load_legends(request):
+    body_id = request.GET.get("button_body")
+    try:
+        button_body = ButtonBody.objects.get(id=body_id)
+        contacts = button_body.contact_types.all()
+        return render(request, 'configurator/contact_options.html', {"contacts": contacts})
+
+    except ButtonBody.DoesNotExist:
+        return JsonResponse({'error': 'ButtonBody not found'})
