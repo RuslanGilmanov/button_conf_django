@@ -57,3 +57,14 @@ class SurroundForm(models.Model):
 
     def __str__(self):
         return self.surround_form
+
+
+class Pressel(models.Model):
+    type = models.CharField(max_length=10)
+    legend = models.CharField(max_length=40)
+    pressel_stock_code = models.CharField(max_length=20)
+    pressel_finish = models.CharField(max_length=20)
+    polycarbonate_colour = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f'{self.type} {self.legend}'
