@@ -36,30 +36,26 @@ class StandardButtonForm(forms.Form):
             self.fields["led_color"].queryset = led_voltage.led_colors.all()
 
 
-class PresselForm(forms.ModelForm):
+class PresselForm(forms.Form):
     pressel_type = forms.ModelChoiceField(
-    queryset=Pressel.objects.values('type').distinct(),
-    widget=forms.Select(attrs={"hx-get": "load_pressel_legend/", "hx-target": "#id_pressel_legend"}))
+        queryset=Pressel.objects.values_list('type', flat=True).distinct(),
+        widget=forms.Select(attrs={"hx-get": "load_pressel_legend/", "hx-target": "#id_pressel_legend"}))
+    pressel_legend = forms.ModelChoiceField(
+        queryset=Pressel.objects.values_list('legend', flat=True).distinct())
+    pressel_finish = forms.ModelChoiceField(
+        queryset=Pressel.objects.values_list('pressel_finish', flat=True).distinct())
 
-    class Meta:
-        model = Pressel
-        fields = '__all__'
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # Access the values of the queryset
-        pressel_type_values = Pressel.objects.values_list('type', flat=True).distinct()
-
-        # Update the choices for the pressel_type field
-        self.fields['pressel_type'].queryset = pressel_type_values
-
+    # class Meta:
+    #     model = Pressel
+    #     fields = '__all__'
+    #
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)
     #
     #     # Populate fields with distinct querysets
-    #     self.fields['type'].queryset = Pressel.objects.values('type').distinct()
-    #     self.fields['legend'].queryset = Pressel.objects.values('legend').distinct()
-    #     self.fields['pressel_stock_code'].queryset = Pressel.objects.values('pressel_stock_code').distinct()
-    #     self.fields['pressel_finish'].queryset = Pressel.objects.values('pressel_finish').distinct()
-    #     self.fields['polycarbonate_colour'].queryset = Pressel.objects.values('polycarbonate_colour').distinct()
+    #     self.fields['type'].queryset = Pressel.objects.select_related('type').distinct('type')
+    #     self.fields['legend'].queryset = Pressel.objects.select_related('legend').distinct()
+    #     self.fields['pressel_stock_code'].queryset = Pressel.objects.select_related('pressel_stock_code').distinct()
+    #     self.fields['pressel_finish'].queryset = Pressel.objects.select_related('pressel_finish').distinct()
+    #     self.fields['polycarbonate_colour'].queryset = Pressel.objects.select_related('polycarbonate_colour').distinct()
