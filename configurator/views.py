@@ -65,13 +65,14 @@ def standard_button(request):
     else:
         form = StandardButtonForm()
         pressel_form = PresselForm()
+        # print(pressel_form)
 
-    context = {
-        'title': 'Standard button',
-        'form': form,
-        'pressel_form': pressel_form
-    }
-    return render(request, 'configurator/standard_button.html', context)
+        context = {
+            'title': 'Standard button',
+            'form': form,
+            'pressel_form': pressel_form
+        }
+        return render(request, 'configurator/standard_button.html', context)
 
 
 def load_contact_types(request):

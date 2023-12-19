@@ -19,16 +19,22 @@
       {{ form.button_body.label_tag }}
       {{ form.button_body }}
      <div class="form-group" style="float: right; margin-right: 100px; margin-top: 10px;">
-       {% for field in pressel_form %}
-        {{ field.label_tag }}
-          {{ field }}
+<!--       {% for field in pressel_form %}-->
+<!--        {{ field.label_tag }}-->
+<!--         {{ pressel_form.pressel_type.label_tag }}-->
+<!--         {{ pressel_form.pressel_type}}-->
+<!--         {{ pressel_form.pressel_legend.label_tag }}-->
+<!--         {{ pressel_form.pressel_legend}}-->
+<!--         {{ pressel_form.pressel_finish.label_tag }}-->
+<!--         {{ pressel_form.pressel_finish}}-->
+         {{ pressel_form }}
 <!--        <select name="{{ field.name }}">-->
 <!--            <option value="" selected>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
 <!--            {% for choice in field.queryset %}-->
 <!--                <option value="{{ choice }}">{{ choice }}</option>-->
 <!--            {% endfor %}-->
 <!--        </select>-->
-    {% endfor %}
+<!--    {% endfor %}-->
 
      </div>
     </div>
