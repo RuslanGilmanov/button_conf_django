@@ -7,7 +7,10 @@ from .models import (
     SurroundType,
     SurroundColor,
     SurroundForm,
-    Pressel
+    Pressel,
+    PresselLegend,
+    PresselFinish,
+    PresselPolycarbonateColour
 )
 
 
@@ -37,25 +40,15 @@ class StandardButtonForm(forms.Form):
 
 
 class PresselForm(forms.Form):
+    types = set(Pressel.objects.values_list('type', flat=True))
     pressel_type = forms.ModelChoiceField(
-        queryset=Pressel.objects.values_list('type', flat=True).distinct(),
-        widget=forms.Select(attrs={"hx-get": "load_pressel_legend/", "hx-target": "#id_pressel_legend"}))
-    pressel_legend = forms.ModelChoiceField(
-        queryset=Pressel.objects.values_list('legend', flat=True).distinct())
-    pressel_finish = forms.ModelChoiceField(
-        queryset=Pressel.objects.values_list('pressel_finish', flat=True).distinct())
+        queryset=Pressel.objects.distinct('type'),
+        widget=forms.Select(attrs={"hx-get": "load_legend/", "hx-target": "#id_legend"}))
+    legend = forms.ModelChoiceField(queryset=PresselLegend.objects.none())
+    pressel_finish = forms.ModelChoiceField(queryset=PresselFinish.objects.none())
+    polycarbonate_colour = forms.ModelChoiceField(queryset=PresselPolycarbonateColour.objects.none())
 
-
-    # class Meta:
-    #     model = Pressel
-    #     fields = '__all__'
-    #
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #
-    #     # Populate fields with distinct querysets
-    #     self.fields['type'].queryset = Pressel.objects.select_related('type').distinct('type')
-    #     self.fields['legend'].queryset = Pressel.objects.select_related('legend').distinct()
-    #     self.fields['pressel_stock_code'].queryset = Pressel.objects.select_related('pressel_stock_code').distinct()
-    #     self.fields['pressel_finish'].queryset = Pressel.objects.select_related('pressel_finish').distinct()
-    #     self.fields['polycarbonate_colour'].queryset = Pressel.objects.select_related('polycarbonate_colour').distinct()
+    # pressel_legend = forms.ModelChoiceField(
+    #     queryset=Pressel.objects.values_list('legend', flat=True).distinct())
+    # pressel_finish = forms.ModelChoiceField(
+    #     queryset=Pressel.objects.values_list('pressel_finish', flat=True).distinct())
