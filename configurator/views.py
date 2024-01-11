@@ -9,9 +9,11 @@ from .models import (
     SurroundType,
     SurroundColor,
     SurroundForm,
-    Pressel
+    Pressel,
+    PresselLegend,
+    PresselFinish,
+    PresselPolycarbonateColour
 )
-import csv
 
 
 def index(request):
@@ -65,7 +67,6 @@ def standard_button(request):
     else:
         form = StandardButtonForm()
         pressel_form = PresselForm()
-        # print(pressel_form)
 
         context = {
             'title': 'Standard button',
@@ -111,22 +112,14 @@ def get_contact_type(request):
         return HttpResponseBadRequest("Invalid button body selection")
 
 
-# def read_legends_from_scv():
-#     legend_codes = []
-#
-#     with open('configurator/static/legends/Legend Codes_csv.csv', newline='') as csvfile:
-#         csv_reader = csv.DictReader(csvfile)
-#         for row in csv_reader:
-#             legend_codes.append(row)
-#
-#     return legend_codes
-
 def load_legends(request):
-    body_id = request.GET.get("button_body")
+    pressel_type_id = request.GET.get("pressel_type")
+    print(pressel_type_id)
     try:
-        button_body = ButtonBody.objects.get(id=body_id)
-        contacts = button_body.contact_types.all()
-        return render(request, 'configurator/contact_options.html', {"contacts": contacts})
+        pressel_type = Pressel.objects.get(id=pressel_type_id)
+        print(pressel_type)
+        legends = Pressel.objects.filter(type=pressel_type).all()
+        return render(request, 'configurator/pressel_legend_options.html', {"legends": legends})
 
-    except ButtonBody.DoesNotExist:
-        return JsonResponse({'error': 'ButtonBody not found'})
+    except Pressel.DoesNotExist:
+        return JsonResponse({'error': 'Pressel type not found'})
