@@ -6,7 +6,12 @@ from .models import (
     IlluminationVoltage,
     SurroundType,
     SurroundColor,
-    SurroundForm
+    SurroundForm,
+    Pressel,
+    PresselType,
+    PresselLegend,
+    PresselFinish,
+    PresselPolycarbonateColour
 )
 
 admin.site.register(ButtonBody)
@@ -16,3 +21,8 @@ admin.site.register(IlluminationVoltage)
 admin.site.register(SurroundType)
 admin.site.register(SurroundColor)
 admin.site.register(SurroundForm)
+admin.site.register(Pressel)
+admin.site.register(PresselType)
+admin.site.register(PresselLegend)
+admin.site.register(PresselFinish)
+admin.site.register(PresselPolycarbonateColour)
