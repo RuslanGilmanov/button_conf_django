@@ -67,4 +67,32 @@ class Pressel(models.Model):
     polycarbonate_colour = models.CharField(max_length=20)
 
     def __str__(self):
-        return f'{self.type} {self.legend}'
+        return f'{self.type}'
+
+
+class PresselType(models.Model):
+    pressel_type = models.CharField(max_length=10)
+
+    def __str__(self):
+        return f'{self.pressel_type}'
+
+
+class PresselLegend(models.Model):
+    legend = models.CharField(max_length=40)
+
+    def __str__(self):
+        return f'{self.legend}'
+
+
+class PresselFinish(models.Model):
+    pressel_finish = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f'{self.pressel_finish}'
+
+
+class PresselPolycarbonateColour(models.Model):
+    polycarbonate_colour = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f'{self.polycarbonate_colour}'
