@@ -10,6 +10,7 @@ from .models import (
     SurroundColor,
     SurroundForm,
     Pressel,
+    PresselType,
     PresselLegend,
     PresselFinish,
     PresselPolycarbonateColour
@@ -114,11 +115,9 @@ def get_contact_type(request):
 
 def load_legends(request):
     pressel_type_id = request.GET.get("pressel_type")
-    print(pressel_type_id)
     try:
-        pressel_type = Pressel.objects.get(id=pressel_type_id)
-        print(pressel_type)
-        legends = Pressel.objects.filter(type=pressel_type).all()
+        pressel_type = PresselType.objects.get(id=pressel_type_id)
+        legends = pressel_type.legends.all()
         return render(request, 'configurator/pressel_legend_options.html', {"legends": legends})
 
     except Pressel.DoesNotExist:
