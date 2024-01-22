@@ -83,24 +83,4 @@
     }
 </style>
 
-<!--<script>-->
-<!--$(document).ready(function () {-->
-<!--    $("#id_button_body select").change(function () {-->
-<!--        var buttonBody = $(this).val();-->
-<!--        $.ajax({-->
-<!--            url: "{% url 'contact-type' %}",-->
-<!--            data: {'button_body': buttonBody},-->
-<!--            dataType: 'json',-->
-<!--            success: function (data) {-->
-<!--                var contactTypeDropdown = $("#id_contact_arr");-->
-<!--                contactTypeDropdown.empty();-->
-<!--                $.each(data, function (key, value) {-->
-<!--                    contactTypeDropdown.append($('<option></option>').attr('value', key).text(value));-->
-<!--                });-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-<!--});-->
-<!--</script>-->
-
 {% endblock %}
