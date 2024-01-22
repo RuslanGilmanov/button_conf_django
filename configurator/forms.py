@@ -8,6 +8,7 @@ from .models import (
     SurroundColor,
     SurroundForm,
     Pressel,
+    PresselType,
     PresselLegend,
     PresselFinish,
     PresselPolycarbonateColour
@@ -40,9 +41,8 @@ class StandardButtonForm(forms.Form):
 
 
 class PresselForm(forms.Form):
-    types = set(Pressel.objects.values_list('type', flat=True))
     pressel_type = forms.ModelChoiceField(
-        queryset=Pressel.objects.distinct('type'),
+        queryset=PresselType.objects.all(),
         widget=forms.Select(attrs={"hx-get": "load_legend/", "hx-target": "#id_legend"}))
     legend = forms.ModelChoiceField(queryset=PresselLegend.objects.none())
     pressel_finish = forms.ModelChoiceField(queryset=PresselFinish.objects.none())
@@ -52,3 +52,6 @@ class PresselForm(forms.Form):
     #     queryset=Pressel.objects.values_list('legend', flat=True).distinct())
     # pressel_finish = forms.ModelChoiceField(
     #     queryset=Pressel.objects.values_list('pressel_finish', flat=True).distinct())
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
