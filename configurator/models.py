@@ -79,6 +79,7 @@ class PresselType(models.Model):
 
 class PresselLegend(models.Model):
     legend = models.CharField(max_length=40)
+    types = models.ManyToManyField(PresselType, related_name='legends')
 
     def __str__(self):
         return f'{self.legend}'
