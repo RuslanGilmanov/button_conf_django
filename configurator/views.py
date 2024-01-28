@@ -122,3 +122,15 @@ def load_legends(request):
 
     except Pressel.DoesNotExist:
         return JsonResponse({'error': 'Pressel type not found'})
+
+
+def load_finish(request):
+    legend_id = request.GET.get("legend")
+    try:
+        legend = PresselLegend.objects.get(id=legend_id)
+        pressel_finishes = PresselFinish.objects.all()
+        return render(request, 'configurator/pressel_finish_options.html', {"pressel_finishes": pressel_finishes})
+
+    except Pressel.DoesNotExist:
+        return JsonResponse({'error': 'Pressel finish not found'})
+
