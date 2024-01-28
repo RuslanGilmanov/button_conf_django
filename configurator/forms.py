@@ -44,7 +44,9 @@ class PresselForm(forms.Form):
     pressel_type = forms.ModelChoiceField(
         queryset=PresselType.objects.all(),
         widget=forms.Select(attrs={"hx-get": "load_legend/", "hx-target": "#id_legend"}))
-    legend = forms.ModelChoiceField(queryset=PresselLegend.objects.none())
+    legend = forms.ModelChoiceField(
+        queryset=PresselLegend.objects.none(),
+        widget=forms.Select(attrs={"hx-get": "load_pressel_finish/", "hx-target": "#id_pressel_finish"}))
     pressel_finish = forms.ModelChoiceField(queryset=PresselFinish.objects.none())
     polycarbonate_colour = forms.ModelChoiceField(queryset=PresselPolycarbonateColour.objects.none())
 
