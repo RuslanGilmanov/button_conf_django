@@ -18,16 +18,6 @@
     <div class="form-group">
       {{ form.button_body.label_tag }}
       {{ form.button_body }}
-     <div class="form-group" style="float: right; margin-right: 100px; margin-top: 10px;">
-         {{ pressel_form.pressel_type.label_tag }}
-         {{ pressel_form.pressel_type}}
-         {{ pressel_form.legend.label_tag }}
-         {{ pressel_form.legend }}
-         {{ pressel_form.pressel_finish.label_tag }}
-         {{ pressel_form.pressel_finish }}
-         {{ pressel_form.polycarbonate_colour.label_tag }}
-         {{ pressel_form.polycarbonate_colour }}
-     </div>
     </div>
     <div class="form-group">
       {{ form.contact_type.label_tag }}
@@ -61,6 +51,21 @@
       <span class="border border-success border-2 bg-light">{{ button_code }}</span>
     </div>
   {% endif %}
+</div>
+<div class="background-container">
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      {{ pressel_form.pressel_type.label_tag }}
+      {{ pressel_form.pressel_type}}
+      {{ pressel_form.legend.label_tag }}
+      {{ pressel_form.legend }}
+      {{ pressel_form.pressel_finish.label_tag }}
+      {{ pressel_form.pressel_finish }}
+      {{ pressel_form.polycarbonate_colour.label_tag }}
+      {{ pressel_form.polycarbonate_colour }}
+     </div>
+  </form>
 </div>
 
 <style>
