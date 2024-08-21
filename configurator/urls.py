@@ -8,5 +8,6 @@ urlpatterns = [
     path('standard/load_contact_types/', views.load_contact_types, name='load_contact_types'),
     path('standard/load_colors/', views.load_colors, name='load_colors'),
     path('standard/load_legend/', views.load_legends, name='load_legend'),
-    path('standard/load_pressel_finish/', views.load_finish, name='load_pressel_finish')
+    path('standard/load_pressel_finish/', views.load_finish, name='load_pressel_finish'),
+    path('m20/', views.m20_button, name='m20-butt')
 ]

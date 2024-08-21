@@ -134,3 +134,10 @@ def load_finish(request):
     except Pressel.DoesNotExist:
         return JsonResponse({'error': 'Pressel finish not found'})
 
+
+def m20_button(request):
+    context = {
+        'page_name': "M20 Button"
+    }
+    return render(request, 'configurator/m20_button.html', context)
+
