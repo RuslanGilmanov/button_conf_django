@@ -67,12 +67,11 @@ def standard_button(request):
 
     else:
         form = StandardButtonForm()
-        pressel_form = PresselForm()
+    
 
         context = {
             'title': 'Standard button',
             'form': form,
-            'pressel_form': pressel_form
         }
         return render(request, 'configurator/standard_button.html', context)
 
@@ -133,4 +132,14 @@ def load_finish(request):
 
     except Pressel.DoesNotExist:
         return JsonResponse({'error': 'Pressel finish not found'})
+    
+
+def select_pressel(request):
+    form = PresselForm()
+
+    context = {
+        'title': 'Pressel Selection Page',
+        'form': form
+    }
+    return render(request, 'configurator/pressel_selection.html', context)
 

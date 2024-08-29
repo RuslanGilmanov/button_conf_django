@@ -1,0 +1,28 @@
+{% extends 'configurator/base.html' %}
+{% load static %}
+
+{% block title %}
+  {{ 'Pressel Selection' }}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="background-container">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.pressel_type.label_tag }}
+        {{ form.pressel_type}}
+        {{ form.legend.label_tag }}
+        {{ form.legend }}
+        {{ form.pressel_finish.label_tag }}
+        {{ form.pressel_finish }}
+        {{ form.polycarbonate_colour.label_tag }}
+        {{ form.polycarbonate_colour }}
+       </div><br>
+       <button type="submit">Show pressel code</button>
+    </form>
+  </div>
+
+{% endblock content %}
