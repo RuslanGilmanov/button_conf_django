@@ -50,14 +50,14 @@ footer {
     margin-left: 50px;
 }
 
-#start_over{
-    color: rgb(34, 105, 172);
+#start_over, #links {
+    color: rgb(34, 105, 172);;
     font-family: 'Open Sans';
+    font-size: 30px;
     font-style: normal;
     font-weight: 600;
     font-stretch: normal;
-    font-size: small
-
+    font-size: medium
 }
 
 .img-thumbnail{
@@ -286,5 +286,6 @@ div.carousel.slide{
     font-size: 35px;
     cursor: pointer;
   }
+
 
 
