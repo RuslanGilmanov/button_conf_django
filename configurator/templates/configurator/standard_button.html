@@ -48,14 +48,15 @@
 
   {% if button_code %}
     <div>
-      <span class="border border-success border-2 bg-light">{{ button_code }}</span>
+      <span id="button-code" class="border border-success border-2 bg-light">{{ button_code }}</span>
+      <button id="copy-button" class="border border-success border-2 bg-light">Copy to Clipboard</button>
     </div>
   {% endif %}
-</div>
+</div><br>
 
 <p>
-<a id="links" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'select-pressel' %}">
-  Go to pressel selection page
+<a id="links" class="p-4 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'select-pressel' %}">
+  Go to pressel selection
 </a>
 </p>
 
@@ -78,5 +79,24 @@
       display: block;
     }
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("copy-button").addEventListener("click", function() {
+    const buttonCodeElement = document.getElementById("button-code");
+    if (buttonCodeElement) {
+      const textToCopy = buttonCodeElement.innerText;
+
+      navigator.clipboard.writeText(textToCopy).then(function() {
+        alert('Copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    } else {
+      console.error('Element with id "button-code" not found.');
+    }
+  });
+});
+</script>
 
 {% endblock %}
