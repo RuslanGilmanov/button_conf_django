@@ -49,7 +49,7 @@
   {% if button_code %}
     <div>
       <span id="button-code" class="border border-success border-2 bg-light">{{ button_code }}</span>
-      <button id="copy-button" class="border border-success border-2 bg-light">Copy to Clipboard</button>
+      <button onclick="copyTextToClipboard()" id="copy-button" class="border border-success border-2 bg-light">Copy to Clipboard</button>
     </div>
   {% endif %}
 </div><br>
@@ -80,23 +80,5 @@
     }
 </style>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("copy-button").addEventListener("click", function() {
-    const buttonCodeElement = document.getElementById("button-code");
-    if (buttonCodeElement) {
-      const textToCopy = buttonCodeElement.innerText;
-
-      navigator.clipboard.writeText(textToCopy).then(function() {
-        alert('Copied to clipboard!');
-      }, function(err) {
-        console.error('Failed to copy: ', err);
-      });
-    } else {
-      console.error('Element with id "button-code" not found.');
-    }
-  });
-});
-</script>
 
 {% endblock %}
