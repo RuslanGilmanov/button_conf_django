@@ -43,20 +43,20 @@
       {{ form.surround_form.label_tag }}
       {{ form.surround_form }}
     </div><br>
-    <button type="submit">Generate code</button>
+    <button type="submit" id="view-button">View stock code</button>
   </form><br>
 
   {% if button_code %}
     <div>
-      <span id="button-code" class="border border-success border-2 bg-light">{{ button_code }}</span>
-      <button onclick="copyTextToClipboard()" id="copy-button" class="border border-success border-2 bg-light">Copy to Clipboard</button>
+      <span id="button-code" class="padding-in output">{{ button_code }}</span>
+      <button id="copy-button">Copy to Clipboard</button>
     </div>
   {% endif %}
 </div><br>
 
 <p>
 <a id="links" class="p-4 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'select-pressel' %}">
-  Go to pressel selection
+  Go to pressel selection >>>
 </a>
 </p>
 

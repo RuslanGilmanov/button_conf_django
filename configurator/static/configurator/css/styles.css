@@ -8,14 +8,6 @@ h1
     font-stretch: normal;
 }
 
-#Selection
-{
-    width: 50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .selectItem{
     color: rgb(34, 105, 172);
     font-family: 'Open Sans';
@@ -29,16 +21,6 @@ footer {
     width: 100%;
     color: black;
     text-align: center;
-}
-
-.dropdown-item:hover{
-    text-decoration-line: underline;
-}
-
-#popupImage{
-    height: 15%;
-    width: 15%;
-    margin-left: 10%;
 }
 
 .selectedButton, .heading{
@@ -67,6 +49,7 @@ footer {
     border-color: rgb(34, 105, 172);
 }
 
+
 .labelImage{
     margin-left: 2%;
     color: rgb(34, 105, 172);
@@ -91,78 +74,19 @@ footer {
     margin-left: 1%;
 }
 
-
-#btn1{
-    color: rgb(34, 105, 172);
-    position: absolute;
-    left: 50px;
-    border-color: rgb(34, 105, 172);
-    font-weight: 600;
-    background-color: white;
-
-}
-
-.btn-primary, .btn{
-    color: rgb(34, 105, 172);
-    border-color: rgb(34, 105, 172);
-    font-weight: 600;
-    background-color: white;
-}
-
-.btn:hover{
-    background-color: rgb(34, 105, 172);
-    color: white;
-}
-
-#btn1:hover{
-    background-color: rgb(34, 105, 172);
-    color: white;
-}
-
-.selectColumn1{
-    position: absolute;
-    left: 50px;
-}
-
-.selectColumn2{
-    position: absolute;
-    left: 350px;
-}
-
-.labelColumn1{
-    font-weight: 500;
-    margin-left: 50px;
-    color: rgb(34, 105, 172);
-}
-
-.labelColumn2{
-    font-weight: 500;
-    position: absolute;
-    left: 350px;
-    color: rgb(34, 105, 172);
-}
-
-select{
-    border-color: rgb(34, 105, 172);
-}
-
 #copyright{
     color: rgb(34, 105, 172);
 }
 
-#output{
+#button-code{
     background-color: white;
     border-style: solid;
-    border-color: rgb(34, 105, 172);
-    border-radius: 5px;
+    border-color: rgb(0, 255, 127);
     padding-top: 8px;
     padding-right: 15px;
     padding-bottom: 9px;
     padding-left: 15px;
     border-width: 2px;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
 }
 
 .output{
@@ -171,121 +95,39 @@ select{
     font-weight: 800;
     font-stretch: normal;
     font-size: large;
-    margin-left: 50px;
+
 }
 
-#btnReset{
+#view-button{
     color: rgb(34, 105, 172);
-    position: absolute;
-    left: 620px;
+    border-style: solid;
     border-color: rgb(34, 105, 172);
     font-weight: 600;
     background-color: white;
 }
 
-#btnReset:hover{
+#view-button:hover{
     background-color: rgb(34, 105, 172);
     color: white;
     }
 
-#btnCopy{
+#copy-button{
     color: rgb(34, 105, 172);
     position: relative;
     left: 5px;
-    background-color: rgb(224, 224, 224);
+    border: none;
+    background-color: transparent;
+    font-size: small;
     }
 
-#btnCopy:hover{
+#copy-button:hover{
     background-color: rgb(34, 105, 172);
     color: white;
     }
 
-.card{
+.padding-in {
     padding: 10px;
-    margin: 40px;
-    border-color: rgb(34, 105, 172);
-    height: 470px
 }
-
-div.carousel.slide{
-    color: black;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-
-}
-
-.card-group {
-    width: 600px;
-
-}
-
-.card-img-top {
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-#slide_heading{
-    font-family: 'Open Sans';
-    font-style: normal;
-    text-align: center;
-}
-
-
-/* The grid: Four equal columns that floats next to each other */
-.column {
-    float: center;
-    width: 20%;
-    padding: auto
-  }
-
-  /* Style the images inside the grid */
-  .column img {
-    opacity: 0.8;
-    cursor: pointer;
-    width: 370px;
-    padding: 10px
-  }
-
-  .column img:hover {
-    opacity: 1;
-  }
-
-
-
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
-  /* The expanding image container (positioning is needed to position the close button and the text) */
-  .container {
-    position: relative;
-    display: none;
-  }
-
-  /* Expanding image text */
-  #imgtext {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    color: black;
-    font-size: 20px;
-  }
-
-  /* Closable button inside the image */
-  .closebtn {
-    position: absolute;
-    top: 5px;
-    right: 300px;
-    color: black;
-    font-size: 35px;
-    cursor: pointer;
-  }
 
 
 

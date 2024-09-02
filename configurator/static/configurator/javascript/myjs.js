@@ -1,11 +1,14 @@
 // Copy button code to clipboard
+document.addEventListener("DOMContentLoaded", function() {
+  const copyButton = document.getElementById("copy-button");
 
-function copyTextToClipboard() {
-    document.getElementById("copy-button").addEventListener("click", function() {
+  // Check if the button exists before attaching the event listener
+  if (copyButton) {
+    copyButton.addEventListener("click", function() {
       const buttonCodeElement = document.getElementById("button-code");
       if (buttonCodeElement) {
         const textToCopy = buttonCodeElement.innerText;
-  
+
         navigator.clipboard.writeText(textToCopy).then(function() {
           alert('"' + textToCopy + '" copied to clipboard!');
         }, function(err) {
@@ -16,4 +19,5 @@ function copyTextToClipboard() {
       }
     });
   }
+});
 
