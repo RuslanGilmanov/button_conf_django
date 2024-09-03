@@ -8,6 +8,15 @@ h1
     font-stretch: normal;
 }
 
+h3 {
+    text-align: left;
+    color: rgb(34, 105, 172);
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-size: large;
+    font-weight: 600;
+}
+
 .selectItem{
     color: rgb(34, 105, 172);
     font-family: 'Open Sans';
