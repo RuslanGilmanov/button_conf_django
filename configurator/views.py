@@ -15,6 +15,7 @@ from .models import (
     PresselFinish,
     PresselPolycarbonateColour
 )
+from .conf_specific_data.pressel_data_process import search_in_pressel_dict
 
 
 def index(request):
@@ -124,13 +125,43 @@ def load_legends(request):
     
 
 def select_pressel(request):
-    form = PresselForm()
+    
+    if request.method == 'POST':
+        form = PresselForm(request.POST)
 
-    context = {
-        'title': 'Pressel Selection Page',
-        'form': form
-    }
-    return render(request, 'configurator/pressel_selection.html', context)
+        if form.is_valid():
+            selected_pressel_type = form.cleaned_data['type']
+            selected_pressel_finish = form.cleaned_data['pressel_finish']
+            selected_polycarbonate_colour = form.cleaned_data['polycarbonate_colour']
+            selected_pressel_legend = form.cleaned_data['pressel_legend']
+
+            pressel_code = search_in_pressel_dict(
+                pressel_type = selected_pressel_type,
+                polycarb_colour = selected_polycarbonate_colour,
+                pressel_finish = selected_pressel_finish,
+                pressel_legend = selected_pressel_legend,
+            )
+            
+        else:
+            print(form.errors)
+
+        context = {
+            'title': 'Pressel Selection Page',
+            'form': form,
+            'pressel_code': pressel_code
+        }
+
+        return render(request, 'configurator/pressel_selection.html', context)
+
+    else:
+        form = PresselForm()
+
+        context = {
+            'title': 'Pressel Selection Page',
+            'form': form
+        }
+
+        return render(request, 'configurator/pressel_selection.html', context)
 
 # def load_finish(request):
 #     legend_id = request.GET.get("legend")

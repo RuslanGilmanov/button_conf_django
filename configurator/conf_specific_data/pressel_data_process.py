@@ -2,18 +2,7 @@ import pandas as pd
 
 
 data = pd.read_excel('configurator/conf_specific_data/pressel_list.xlsx')
-
-
-def main():   
-    pressel_dict = read_data_into_dict(data)
-    print(get_pressel_types(data))
-    # print(pressel_dict)
-    # search_result = search_in_pressel_dict(pressel_dict, 'OPAL', 'BRUSHED STAINLESS STEEL', 'GR', 'US91-15')
-
-
-def read_data_into_dict(data):
-    pressel_dict = data.to_dict(orient='index')
-    return pressel_dict
+pressel_dict = data.to_dict(orient='index')
 
 
 def get_pressel_types(data):
@@ -31,14 +20,12 @@ def get_pressel_finish(data):
         PRESSEL_FINISH.append((item, item.upper()))
     return PRESSEL_FINISH
 
+
 def get_polycarbonate_colour(data):
     unique_values = data['Polycarbonate Colour'].unique()
     POLYCARBONATE_COLOUR = [("None", "Select Polycarbonate colour")] 
     for item in unique_values:
-        if item.upper() in POLYCARBONATE_COLOUR:
-            pass 
-        else:
-            POLYCARBONATE_COLOUR.append((item, item.upper()))
+        POLYCARBONATE_COLOUR.append((item, item.upper()))
     return POLYCARBONATE_COLOUR
 
 
@@ -50,11 +37,24 @@ def get_pressel_legend(data):
     return PRESSEL_LEGEND
 
 
+def search_in_pressel_dict(pressel_type, pressel_finish, polycarb_colour, pressel_legend):
+
+    for key, sub_dict in pressel_dict.items():
+        if (sub_dict.get('Type') == pressel_type and
+            sub_dict.get('Pressel / Plate finish') == pressel_finish and
+            sub_dict.get('Polycarbonate Colour') == polycarb_colour and
+            str(sub_dict.get('Pressel Legend')) == pressel_legend):
+            print(pressel_type)
+            print(pressel_finish)
+            print(polycarb_colour)
+            print(type(pressel_legend))
+            print(f"Dewhurst Part Number: {sub_dict['Dewhurst Part Number']}")
+            return sub_dict['Dewhurst Part Number']
+
+    return "Pressel not found."
+
+
 PRESSEL_TYPES = get_pressel_types(data)
 PRESSEL_FINISH = get_pressel_finish(data)
 POLYCARBONATE_COLOUR = get_polycarbonate_colour(data)
 PRESSEL_LEGEND = get_pressel_legend(data)
-
-
-if __name__ == "__main__":
-    main()

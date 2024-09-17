@@ -31,16 +31,17 @@
         {{ form.pressel_legend }}
        </div><br>
        <button type="submit" id="view-button">Show pressel code</button>
-    </form>
-  </div>
+    </form><br>
 
-  {% if pressel_code %}
+    {% if pressel_code %}
     <div>
       <span id="button-code" class="padding-in output">{{ pressel_code }}</span>
       <button id="copy-button">Copy to Clipboard</button>
     </div>
   {% endif %}
 </div><br>
+
+  
 
   <style>
     .background-container {
