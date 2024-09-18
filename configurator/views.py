@@ -15,7 +15,10 @@ from .models import (
     PresselFinish,
     PresselPolycarbonateColour
 )
-from .conf_specific_data.pressel_data_process import search_in_pressel_dict
+from .conf_specific_data.pressel_data_process import (search_in_pressel_dict,
+                                                      get_pressel_finish,
+                                                      get_polycarbonate_colour,
+                                                      get_pressel_legend)
 
 
 def index(request):
@@ -124,6 +127,19 @@ def load_legends(request):
         return JsonResponse({'error': 'Pressel type not found'})
     
 
+def load_finish(request):
+    pressel_type = request.GET.get('type')
+    finishes = get_pressel_finish(pressel_type)
+    return render(request, 'configurator/pressel_finish_options.html', {"pressel_finishes": finishes})
+
+
+def load_polycarb_color(request):
+    pressel_type = request.GET.get('type')
+    pressel_finish = request.GET.get('pressel_finish')
+    polycarb_colors = get_polycarbonate_colour(pressel_type, pressel_finish)
+    return render(request, 'configurator/pressel_polycarb_color_options.html', {"pressel_polycarb_colors": polycarb_colors})
+
+
 def select_pressel(request):
     
     if request.method == 'POST':
@@ -162,13 +178,3 @@ def select_pressel(request):
         }
 
         return render(request, 'configurator/pressel_selection.html', context)
-
-# def load_finish(request):
-#     legend_id = request.GET.get("legend")
-#     try:
-#         legend = PresselLegend.objects.get(id=legend_id)
-#         pressel_finishes = PresselFinish.objects.all()
-#         return render(request, 'configurator/pressel_finish_options.html', {"pressel_finishes": pressel_finishes})
-
-#     except Pressel.DoesNotExist:
-#         return JsonResponse({'error': 'Pressel finish not found'})

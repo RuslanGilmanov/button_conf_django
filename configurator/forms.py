@@ -6,14 +6,13 @@ from .models import (
     IlluminationVoltage,
     SurroundType,
     SurroundColor,
-    SurroundForm,
-    Pressel,
-    PresselType,
-    PresselLegend,
-    PresselFinish,
-    PresselPolycarbonateColour
+    SurroundForm
 )
-from .conf_specific_data.pressel_data_process import PRESSEL_TYPES, PRESSEL_FINISH, POLYCARBONATE_COLOUR, PRESSEL_LEGEND
+from .conf_specific_data.pressel_data_process import (PRESSEL_TYPES, 
+                                                      get_pressel_finish,
+                                                      get_polycarbonate_colour,
+                                                      get_pressel_legend
+)
 
 
 class StandardButtonForm(forms.Form):
@@ -42,31 +41,41 @@ class StandardButtonForm(forms.Form):
 
 
 class PresselForm(forms.Form):
-    type = forms.ChoiceField(choices=PRESSEL_TYPES, label='Pressel Type')
-            # 'class': 'form-control'        #Additional CSS classes if needed
-    pressel_finish = forms.ChoiceField(choices=PRESSEL_FINISH, label='Pressel finish')
-    polycarbonate_colour = forms.ChoiceField(choices=POLYCARBONATE_COLOUR, label='Polycarbonate colour')
-    pressel_legend = forms.ChoiceField(choices=PRESSEL_LEGEND, label='Pressel Legend')
+    type = forms.ChoiceField(
+        choices=PRESSEL_TYPES,
+        label='Pressel Type',
+        widget=forms.Select(attrs={"hx-get": "load_pressel_finish/", "hx-target": "#id_pressel_finish"})
+    )
+    pressel_finish = forms.ChoiceField(
+        choices=[],
+        label='Pressel Finish',
+        widget=forms.Select(attrs={"hx-get": "load_polycarbonate_color/", 
+                                   "hx-target": "#id_polycarbonate_color",
+                                   "hx-include": "[name='type']"})
+    )
+    polycarbonate_color = forms.ChoiceField(
+        choices=[],
+        label='Polycarbonate Color',
+        widget=forms.Select(attrs={"hx-get": "load_pressel_legend/", 
+                                   "hx-target": "#id_pressel_legend",
+                                   "hx-include": "[name='type'], [name='polycarbonate_color']"})
+    )
+    pressel_legend = forms.ChoiceField(choices=[], label='Pressel Legend')
 
 
-
-    # pressel_type = forms.ModelChoiceField(
-    #     queryset=PresselType.objects.all(),
-    #     widget=forms.Select(attrs={"hx-get": "load_pressel_finish/", "hx-target": "#id_pressel_finish"}))
-    # pressel_finish = forms.ModelChoiceField(queryset=PresselFinish.objects.none())
-    # polycarbonate_colour = forms.ModelChoiceField(queryset=PresselPolycarbonateColour.objects.none())
-    # legend = forms.ModelChoiceField(
-    #     queryset=PresselLegend.objects.none(),
-    #     widget=forms.Select(attrs={"hx-get": "load_pressel_finish/", "hx-target": "#id_pressel_finish"}))
-
-
-
-    # widget = forms.Select(attrs={"hx-get": "load_legend/", "hx-target": "#id_legend"})
-
-    # pressel_legend = forms.ModelChoiceField(
-    #     queryset=Pressel.objects.values_list('legend', flat=True).distinct())
-    # pressel_finish = forms.ModelChoiceField(
-    #     queryset=Pressel.objects.values_list('pressel_finish', flat=True).distinct())
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Dynamically populate finish and legend based on selection
+        if "type" in self.data:
+            type = self.data.get("type")
+            self.fields['pressel_finish'].choices = get_pressel_finish(type)
+        if "type" in self.data and "pressel_finish" in self.data:
+            type = self.data.get("type")
+            finish = self.data.get("pressel_finish")
+            self.fields['polycarbonate_color'].choices = get_polycarbonate_colour(type, finish)
+        if "type" in self.data and "pressel_finish" in self.data and "polycarbonate_color" in self.data:
+            type = self.data.get("type")
+            finish = self.data.get("pressel_finish")
+            polycarb_color = self.data.get("polycarbonate_color")
+            self.fields['pressel_legend'].choices = get_pressel_legend(polycarb_color)
 
