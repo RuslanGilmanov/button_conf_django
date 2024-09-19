@@ -117,14 +117,11 @@ def get_contact_type(request):
 
 
 def load_legends(request):
-    pressel_type_id = request.GET.get("pressel_type")
-    try:
-        pressel_type = PresselType.objects.get(id=pressel_type_id)
-        legends = pressel_type.legends.all()
-        return render(request, 'configurator/pressel_legend_options.html', {"legends": legends})
-
-    except Pressel.DoesNotExist:
-        return JsonResponse({'error': 'Pressel type not found'})
+    pressel_type = request.GET.get('type')
+    pressel_finish = request.GET.get('pressel_finish')
+    polycarb_color = request.GET.get('polycarbonate_color')
+    pressel_legends = get_pressel_legend(pressel_type, pressel_finish, polycarb_color)
+    return render(request, 'configurator/pressel_legend_options.html', {"pressel_legends": pressel_legends})
     
 
 def load_finish(request):
@@ -148,12 +145,12 @@ def select_pressel(request):
         if form.is_valid():
             selected_pressel_type = form.cleaned_data['type']
             selected_pressel_finish = form.cleaned_data['pressel_finish']
-            selected_polycarbonate_colour = form.cleaned_data['polycarbonate_colour']
+            selected_polycarbonate_color = form.cleaned_data['polycarbonate_color']
             selected_pressel_legend = form.cleaned_data['pressel_legend']
 
             pressel_code = search_in_pressel_dict(
                 pressel_type = selected_pressel_type,
-                polycarb_colour = selected_polycarbonate_colour,
+                polycarb_color = selected_polycarbonate_color,
                 pressel_finish = selected_pressel_finish,
                 pressel_legend = selected_pressel_legend,
             )

@@ -1,3 +1,4 @@
-{% for finish in pressel_finishes %}
-    <option value="{{ finish }}">{{ finish }}</option>
+<option value=" ">Select pressel finish</option>
+{% for value, label in pressel_finishes %}
+    <option value="{{ value }}">{{ label }}</option>
 {% endfor %}

@@ -1,3 +1,4 @@
-{% for legend in legends %}
-    <option value="{{ legend.id }}">{{ legend.legend }}</option>
+<option value=" ">Select pressel legend</option>
+{% for value, label in pressel_legends %}
+    <option value="{{ value }}">{{ label }}</option>
 {% endfor %}
