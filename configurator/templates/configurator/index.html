@@ -10,7 +10,7 @@
     <h1>Button Configurator</h1>
   </header>
 
-  <div class="background-container">
+  <div class="background-container" id="index-background">
     <!-- Content that will have the background image -->
     <div>
       <label for="US91" class="labelImage">Standard:</label><br>
@@ -38,14 +38,4 @@
         </a></p>
     </div>
   </div>
-
-  <style>
-    .background-container {
-      background-position: center;
-      background-attachment: scroll;
-      background-repeat: no-repeat;
-      background-size: 40%;
-      background-image: url({% static 'images/Index_image.jpg' %});
-    }
-  </style>
 {% endblock %}

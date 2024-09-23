@@ -2,7 +2,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   const copyButton = document.getElementById("copy-button");
 
-  // Check if the button exists before attaching the event listener
   if (copyButton) {
     copyButton.addEventListener("click", function() {
       const buttonCodeElement = document.getElementById("button-code");
@@ -21,3 +20,16 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+
+document.addEventListener("DOMContentLoaded", function() {
+  const resetButton = document.getElementById("reset-button");
+
+  if (resetButton) {
+    resetButton.addEventListener("click", function() {
+      document.getElementById('pressel-form').reset();
+    });
+
+      } else {
+        console.error('Element with id "reset-button" not found.');
+      }
+    });

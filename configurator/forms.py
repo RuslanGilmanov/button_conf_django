@@ -49,7 +49,7 @@ class PresselForm(forms.Form):
             "hx-target": "#id_pressel_finish"})
     )
     pressel_finish = forms.ChoiceField(
-        choices=[('', 'Select pressel finish')],
+        choices=[('None', 'Select pressel finish')],
         label='Pressel Finish',
         widget=forms.Select(attrs={
             "hx-get": "load_polycarbonate_color/", 
@@ -58,7 +58,7 @@ class PresselForm(forms.Form):
             })
     )
     polycarbonate_color = forms.ChoiceField(
-        choices=[('', 'Select polycarbonate color')],
+        choices=[('None', 'Select polycarbonate color')],
         label='Polycarbonate Color',
         widget=forms.Select(attrs={
             "hx-get": "load_legend/", 
@@ -66,7 +66,7 @@ class PresselForm(forms.Form):
             "hx-include": "[name='type'], [name='pressel_finish']"})
     )
     pressel_legend = forms.ChoiceField(
-        choices=[('', 'Select pressel legend')], 
+        choices=[('None', 'Select pressel legend')], 
         label='Pressel Legend'
         )
 

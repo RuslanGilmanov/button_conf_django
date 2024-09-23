@@ -11,8 +11,8 @@
   <h1>Pressel selection</h1>
 </header><br>
 
-<div class="background-container">
-    <form method="POST">
+<div class="background-container" id="pressel-background">
+    <form id="pressel-form" method="POST">
       {% csrf_token %}
       <div class="form-group">
         {{ form.type.label_tag }}
@@ -31,6 +31,7 @@
         {{ form.pressel_legend }}
        </div><br>
        <button type="submit" id="view-button">Show pressel code</button>
+       <button type="button" id="reset-button">Reset Form</button>
     </form><br>
 
     {% if pressel_code %}
@@ -41,26 +42,10 @@
   {% endif %}
 </div><br>
 
-  
-
-  <style>
-    .background-container {
-      background-position: center;
-      background-attachment: scroll;
-      background-repeat: no-repeat;
-      background-size: 40%;
-      background-image: url({% static 'images/Pressels_all.jpg' %});
-      margin-left: 30px;
-    }
-    
-    .form-group {
-      display: block;
-      margin-bottom: 10px;
-    }
-    
-    .form-group label {
-      display: block;
-    }
-</style>
+<script>
+  document.getElementById('reset-button').addEventListener('click', function() {
+    document.getElementById('pressel-form').reset(); // Reset the form
+  });
+</script>
 
 {% endblock content %}

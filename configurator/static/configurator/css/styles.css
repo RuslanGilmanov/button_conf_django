@@ -138,5 +138,41 @@ footer {
     padding: 10px;
 }
 
+#pressel-background {
+    background-position: center top;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-size: 45%;
+    background-image: url('/static/images/Pressels_all.jpg');
+    margin-left: 30px;
+    height: 100vh; /* Set a fixed height to display the full background */
+    width: 100%; /* Make sure the container spans the full width */
+  }
 
+.form-group {
+    display: block;
+    margin-bottom: 10px;
+}
 
+.form-group label {
+    display: block;
+}
+
+#stand-butt-background {
+    background-position: center;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-image: url('/static/images/Selection.jpg');
+    margin-left: 30px;
+}
+
+#index-background {
+    background-position: center top;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-size: 38%;
+    background-image: url('/static/images/Index_image.jpg');
+    height: 100vh; /* Set a fixed height to display the full background */
+    width: 100%; /* Make sure the container spans the full width */
+  }
