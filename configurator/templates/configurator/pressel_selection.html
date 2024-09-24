@@ -30,8 +30,8 @@
         {{ form.pressel_legend.label_tag }}
         {{ form.pressel_legend }}
        </div><br>
-       <button type="submit" id="view-button">Show pressel code</button>
-       <button type="button" id="reset-button">Reset Form</button>
+       <button class="btn btn-outline-success" type="submit">Show pressel code</button>
+       <a href="{% url 'select-pressel' %}" class="btn btn-outline-secondary">Reset Form</a>
     </form><br>
 
     {% if pressel_code %}
@@ -41,11 +41,5 @@
     </div>
   {% endif %}
 </div><br>
-
-<script>
-  document.getElementById('reset-button').addEventListener('click', function() {
-    document.getElementById('pressel-form').reset(); // Reset the form
-  });
-</script>
 
 {% endblock content %}

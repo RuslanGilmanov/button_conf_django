@@ -19,17 +19,3 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  const resetButton = document.getElementById("reset-button");
-
-  if (resetButton) {
-    resetButton.addEventListener("click", function() {
-      document.getElementById('pressel-form').reset();
-    });
-
-      } else {
-        console.error('Element with id "reset-button" not found.');
-      }
-    });

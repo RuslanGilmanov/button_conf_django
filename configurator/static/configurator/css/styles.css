@@ -41,7 +41,7 @@ footer {
     margin-left: 50px;
 }
 
-#start_over, #links {
+#start_over, #links, #register, #login, #select-pressel {
     color: rgb(34, 105, 172);;
     font-family: 'Open Sans';
     font-size: 30px;

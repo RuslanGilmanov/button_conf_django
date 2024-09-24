@@ -44,7 +44,8 @@
       {{ form.surround_form.label_tag }}
       {{ form.surround_form }}
     </div><br>
-    <button type="submit" id="view-button">View stock code</button>
+    <button type="submit" class="btn btn-outline-success">View stock code</button>
+    <a href="{% url 'stand-butt' %}" class="btn btn-outline-secondary">Reset Form</a>
   </form><br>
 
   {% if button_code %}

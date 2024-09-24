@@ -138,7 +138,8 @@ def load_polycarb_color(request):
 
 
 def select_pressel(request):
-    
+    pressel_code = None
+
     if request.method == 'POST':
         form = PresselForm(request.POST)
 
@@ -149,29 +150,22 @@ def select_pressel(request):
             selected_pressel_legend = form.cleaned_data['pressel_legend']
 
             pressel_code = search_in_pressel_dict(
-                pressel_type = selected_pressel_type,
-                polycarb_color = selected_polycarbonate_color,
-                pressel_finish = selected_pressel_finish,
-                pressel_legend = selected_pressel_legend,
+                pressel_type=selected_pressel_type,
+                polycarb_color=selected_polycarbonate_color,
+                pressel_finish=selected_pressel_finish,
+                pressel_legend=selected_pressel_legend,
             )
-            
         else:
             print(form.errors)
-
-        context = {
-            'title': 'Pressel Selection Page',
-            'form': form,
-            'pressel_code': pressel_code
-        }
-
-        return render(request, 'configurator/pressel_selection.html', context)
-
+            form = PresselForm()
+    
     else:
         form = PresselForm()
 
-        context = {
-            'title': 'Pressel Selection Page',
-            'form': form
-        }
+    context = {
+        'title': 'Pressel Selection Page',
+        'form': form,
+        'pressel_code': pressel_code
+    }
 
-        return render(request, 'configurator/pressel_selection.html', context)
+    return render(request, 'configurator/pressel_selection.html', context)
