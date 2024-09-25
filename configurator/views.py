@@ -156,7 +156,6 @@ def select_pressel(request):
                 pressel_legend=selected_pressel_legend,
             )
         else:
-            print(form.errors)
             form = PresselForm()
     
     else:
