@@ -10,5 +10,6 @@ urlpatterns = [
     path('pressel_selection/load_legend/', views.load_legends, name='load_pressel_legend'),
     path('pressel_selection/load_pressel_finish/', views.load_finish, name='load_pressel_finish'),
     path('pressel_selection/load_polycarbonate_color/', views.load_polycarb_color, name='load_polycarb_color'),
-    path('pressel_selection/', views.select_pressel, name='select-pressel')
+    path('pressel_selection/', views.select_pressel, name='select-pressel'),
+    path('m20/', views.m20_button, name='m20-butt')
 ]

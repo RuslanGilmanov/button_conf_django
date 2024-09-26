@@ -168,3 +168,19 @@ def select_pressel(request):
     }
 
     return render(request, 'configurator/pressel_selection.html', context)
+    legend_id = request.GET.get("legend")
+    try:
+        legend = PresselLegend.objects.get(id=legend_id)
+        pressel_finishes = PresselFinish.objects.all()
+        return render(request, 'configurator/pressel_finish_options.html', {"pressel_finishes": pressel_finishes})
+
+    except Pressel.DoesNotExist:
+        return JsonResponse({'error': 'Pressel finish not found'})
+
+
+def m20_button(request):
+    context = {
+        'page_name': "M20 Button"
+    }
+    return render(request, 'configurator/m20_button.html', context)
+
