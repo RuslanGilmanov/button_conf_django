@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseBadRequest
-from .forms import StandardButtonForm, PresselForm
+from .forms import StandButtonForm, PresselForm
 from .models import (
     ContactType,
     ButtonBody,
@@ -20,6 +20,8 @@ from .conf_specific_data.pressel_data_process import (search_in_pressel_dict,
                                                       get_polycarbonate_colour,
                                                       get_pressel_legend)
 
+from .conf_specific_data.three_part_kit_components import get_contact_type
+
 
 def index(request):
     context = {
@@ -32,31 +34,31 @@ def index(request):
 def standard_button(request):
 
     if request.method == 'POST':
-        form = StandardButtonForm(request.POST)
+        form = StandButtonForm(request.POST)
         if form.is_valid():
             selected_body = form.cleaned_data['button_body']
             selected_contact = form.cleaned_data['contact_type']
-            selected_led_color = form.cleaned_data['led_color']
+            # selected_led_color = form.cleaned_data['led_color']
             selected_led_voltage = form.cleaned_data['led_voltage']
-            selected_surround_type = form.cleaned_data['surround_type']
-            selected_surround_color = form.cleaned_data['surround_color']
-            selected_surround_form = form.cleaned_data['surround_form']
-            button_body = ButtonBody.objects.filter(body=selected_body).first()
-            contact_type = ContactType.objects.filter(contact=selected_contact).first()
-            led_color = IlluminationColor.objects.filter(led_color=selected_led_color).first()
-            led_voltage = IlluminationVoltage.objects.filter(voltage=selected_led_voltage).first()
-            surround_type = SurroundType.objects.filter(surround=selected_surround_type).first()
-            surround_color = SurroundColor.objects.filter(surround_color=selected_surround_color).first()
-            surround_form = SurroundForm.objects.filter(surround_form=selected_surround_form).first()
+            # selected_surround_type = form.cleaned_data['surround_type']
+            # selected_surround_color = form.cleaned_data['surround_color']
+            # selected_surround_form = form.cleaned_data['surround_form']
+            # button_body = ButtonBody.objects.filter(body=selected_body).first()
+            # contact_type = ContactType.objects.filter(contact=selected_contact).first()
+            # led_color = IlluminationColor.objects.filter(led_color=selected_led_color).first()
+            # led_voltage = IlluminationVoltage.objects.filter(voltage=selected_led_voltage).first()
+            # surround_type = SurroundType.objects.filter(surround=selected_surround_type).first()
+            # surround_color = SurroundColor.objects.filter(surround_color=selected_surround_color).first()
+            # surround_form = SurroundForm.objects.filter(surround_form=selected_surround_form).first()
 
             butt_code = f"DEW KIT " \
-                        f"{button_body.body_code}" \
-                        f"{contact_type.contact_code}" \
-                        f"{led_color.led_code}" \
-                        f"{led_voltage.volt_code}" \
-                        f"{surround_type.surround_code}" \
-                        f"{surround_color.sur_color_code}" \
-                        f"{surround_form.form_code}"
+                        f"{selected_body}" \
+                        f"{selected_contact}" \
+                        f"-" \
+                        f"{selected_led_voltage}" \
+            #             f"{surround_type.surround_code}" \
+            #             f"{surround_color.sur_color_code}" \
+            #             f"{surround_form.form_code}"
 
             context = {
                 'title': 'Standard button',
@@ -70,7 +72,7 @@ def standard_button(request):
             print(form.errors)
 
     else:
-        form = StandardButtonForm()
+        form = StandButtonForm()
     
 
         context = {
@@ -81,14 +83,9 @@ def standard_button(request):
 
 
 def load_contact_types(request):
-    body_id = request.GET.get("button_body")
-    try:
-        button_body = ButtonBody.objects.get(id=body_id)
-        contacts = button_body.contact_types.all()
-        return render(request, 'configurator/contact_options.html', {"contacts": contacts})
-
-    except ButtonBody.DoesNotExist:
-        return JsonResponse({'error': 'ButtonBody not found'})
+    body = request.GET.get("button_body")
+    contacts = get_contact_type(body)
+    return render(request, 'configurator/contact_options.html', {"contacts": contacts})
 
 
 def load_colors(request):
@@ -102,18 +99,18 @@ def load_colors(request):
         return JsonResponse({'error': 'LED Voltage not found'})
 
 
-def get_contact_type(request):
-    button_body = request.GET.get('button_body')
-    # Perform logic to retrieve pressel types based on the selected button_body
-    if button_body == 1 or button_body == 2 or button_body == 3:
-        contact_types = {"0": "Select contact type", "1": "2 x N/O", "2": "2 x N/C", "3": "1 x N/O 1 x N/C"}
-        return JsonResponse(contact_types)
-    elif button_body == '4':
-        contact_types = {'5': "1 x N/O (Micro AMP)"}
-        return JsonResponse(contact_types)
-    else:
-        # If no contact types are available, return a suitable response, e.g., a 400 Bad Request.
-        return HttpResponseBadRequest("Invalid button body selection")
+# def get_contact_type(request):
+#     button_body = request.GET.get('button_body')
+#     # Perform logic to retrieve pressel types based on the selected button_body
+#     if button_body == 1 or button_body == 2 or button_body == 3:
+#         contact_types = {"0": "Select contact type", "1": "2 x N/O", "2": "2 x N/C", "3": "1 x N/O 1 x N/C"}
+#         return JsonResponse(contact_types)
+#     elif button_body == '4':
+#         contact_types = {'5': "1 x N/O (Micro AMP)"}
+#         return JsonResponse(contact_types)
+#     else:
+#         # If no contact types are available, return a suitable response, e.g., a 400 Bad Request.
+#         return HttpResponseBadRequest("Invalid button body selection")
 
 
 def load_legends(request):

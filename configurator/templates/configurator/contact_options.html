@@ -1,3 +1,4 @@
-{% for contact in contacts %}
-    <option value="{{ contact.id }}">{{ contact.contact }}</option>
+<!-- <option value="None" disabled selected hidden style="color: grey;">Select contact type</option> -->
+{% for value, label in contacts %}
+    <option value="{{ value }}">{{ label }}</option>
 {% endfor %}

@@ -1,20 +1,52 @@
 
 BUTTON_BODY = [
-	("4", "Compact 2 Micro"),
-	("7", "Compact 3P"),
-	("8", "Compact 3"),
-	("3", "Compact 2")
+    ("None", "Select button body"),
+    ("8", "Compact 3"),
+    ("7", "Compact 3P"),
+    ("3", "Compact 2"),
+	("4", "Compact 2 Micro")
 ]
 	
-CONTACT_TYPE = [
-	("1", "2xN/O"),
-	("2", "2xN/C"),
-	("3", "1xN/O 1xN/C"),
-	("4", "1xN/O Micro"),
-	("5", "1xN/O AMP"),
-	("6", "4-WAY MTA100 Vert/Horiz (Thyssen)"),
-	("7", "3-Way Vertical")
+# CONTACT_TYPE = [
+# 	("1", "2xN/O"),
+# 	("2", "2xN/C"),
+# 	("3", "1xN/O 1xN/C"),
+# 	("4", "1xN/O Micro"),
+# 	("5", "1xN/O AMP"),
+# 	("6", "4-WAY MTA100 Vert/Horiz (Thyssen)"),
+# 	("7", "3-Way Vertical")
+# ]
+
+def get_contact_type(button_body):
+    if (button_body == "7" or
+        button_body == "8" or
+        button_body == "3"):
+        CONTACT_TYPE = [
+            ("1", "2xN/O"),
+            ("2", "2xN/C"),
+            ("3", "1xN/O 1xN/C")
+        ]
+    else:
+         CONTACT_TYPE = [
+            ("4", "1xN/O Screw terminals"),
+            ("5", "1xN/O AMP"),
+            ("6", "4-WAY MTA100 Vert/Horiz (Thyssen)"),
+            ("7", "3-Way Vertical")
+        ]
+    
+    return CONTACT_TYPE
+
+
+LED_VOLTAGE = [
+    ("None", "Select LED voltage"),
+    ("1", "Non Illuminated"),
+    ("2", "12VDC (Phone & Alarm)"),
+    ("3", "24VDC"),
+    ("4", "110VDC"),
+    ("5", "Multivolt 12-110V AC/DC"),
+    ("6", "6VDC")
 ]
+
 
 LED_COLOR = [
     ("00", "Non Illuminated"),
@@ -35,22 +67,15 @@ LED_COLOR = [
     ("26", "Opal/Blue Type B LED (old type with leads)"),
     ("27", "Amber/Green")
 ]	
-	
-
-LED_VOLTAGE = [
-        ("1", "Non Illuminated"),
-        ("2", "12VDC (Phone & Alarm)"),
-        ("3", "24VDC"),
-        ("4", "110VDC"),
-        ("5", "Multivolt 12-110V AC/DC"),
-        ("6", "6VDC")
-]
                      
 
 SURROUND_TYPE = [
     ("1", "Flush"),
     ("2", "Handicap (Standard)"),
-    ("3", "Extended")
+    ("3", "Extended"),
+    ("4", "Plus Flush"),
+    ("5", "Plus Handicap"),
+    ("5", "Plus Extended")
 ]
 
 
