@@ -66,7 +66,22 @@ class StandButtonForm(forms.Form):
         choices=LED_VOLTAGE,
         label="LED voltage"
     )
-
+    led_color = forms.ChoiceField(
+        choices=[("None", "Select illumination color")],
+        label='LED color'
+    )
+    surround_type = forms.ChoiceField(
+        choices=SURROUND_TYPE,
+        label="Surround type"
+    )
+    surround_color = forms.ChoiceField(
+        choices=SURROUND_COLOR,
+        label="Surround color"
+    )
+    surround_form = forms.ChoiceField(
+        choices=SURROUND_FORM,
+        label="Surround form"
+    )
     # pressel_finish = forms.ChoiceField(
     #     choices=[('None', 'Select pressel finish')],
     #     label='Pressel Finish',

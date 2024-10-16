@@ -38,11 +38,11 @@ def standard_button(request):
         if form.is_valid():
             selected_body = form.cleaned_data['button_body']
             selected_contact = form.cleaned_data['contact_type']
-            # selected_led_color = form.cleaned_data['led_color']
+            selected_led_color = form.cleaned_data['led_color']
             selected_led_voltage = form.cleaned_data['led_voltage']
-            # selected_surround_type = form.cleaned_data['surround_type']
-            # selected_surround_color = form.cleaned_data['surround_color']
-            # selected_surround_form = form.cleaned_data['surround_form']
+            selected_surround_type = form.cleaned_data['surround_type']
+            selected_surround_color = form.cleaned_data['surround_color']
+            selected_surround_form = form.cleaned_data['surround_form']
             # button_body = ButtonBody.objects.filter(body=selected_body).first()
             # contact_type = ContactType.objects.filter(contact=selected_contact).first()
             # led_color = IlluminationColor.objects.filter(led_color=selected_led_color).first()
@@ -54,11 +54,11 @@ def standard_button(request):
             butt_code = f"DEW KIT " \
                         f"{selected_body}" \
                         f"{selected_contact}" \
-                        f"-" \
+                        f"{selected_led_color}"\
                         f"{selected_led_voltage}" \
-            #             f"{surround_type.surround_code}" \
-            #             f"{surround_color.sur_color_code}" \
-            #             f"{surround_form.form_code}"
+                        f"{selected_surround_type}" \
+                        f"{selected_surround_color}" \
+                        f"{selected_surround_form}"
 
             context = {
                 'title': 'Standard button',
