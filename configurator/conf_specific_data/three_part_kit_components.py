@@ -1,6 +1,6 @@
 
 BUTTON_BODY = [
-    ("None", "Select button body"),
+    ("", "Select button body"),
     ("3", "Compact 2"),
 	("4", "Compact 2 Micro"),
     ("8", "Compact 3"),
@@ -29,7 +29,7 @@ def get_contact_type(button_body):
 
 
 LED_VOLTAGE = [
-    ("None", "Select LED voltage"),
+    ("", "Select LED voltage"),
     ("1", "Non Illuminated"),
     ("2", "12VDC (Phone & Alarm)"),
     ("3", "24VDC"),
@@ -57,7 +57,7 @@ def get_led_color(led_voltage):
             ("25", "Opal/Green"),
             ("27", "Amber/Green")
         ]
-    elif led_voltage == "4":
+    elif led_voltage == "4" or led_voltage == "5" or led_voltage == "6":
         LED_COLOR = [
             ("01", "Opal"),
             ("02", "Red"),
@@ -66,34 +66,15 @@ def get_led_color(led_voltage):
             ("05", "Green")
         ]
     
+    else:
+        LED_COLOR = [
+            ("00", "Non illuminated")
+        ]
     return LED_COLOR
 
 
-
-
-LED_COLOR = [
-    ("00", "Non Illuminated"),
-    ("01", "Opal"),
-    ("02", "Red"),
-    ("04", "Blue"),
-    ("03", "Amber"),
-    ("05", "Green"),
-    ("11", "Dual Opal"),
-    ("12", "Dual Red"),
-    ("13", "Dual Amber"),
-    ("14", "Dual Blue"),
-    ("15", "Dual Green"),
-    ("22", "Opal/Red"),
-    ("23", "Opal/Amber"),
-    ("24", "Opal/Blue"),
-    ("25", "Opal/Green"),
-    ("26", "Opal/Blue Type B LED (old type with leads)"),
-    ("27", "Amber/Green")
-]	
-                     
-
 SURROUND_TYPE = [
-    ("None", "Select surround type"),
+    ("", "Select surround type"),
     ("1", "Flush"),
     ("2", "Handicap (Standard)"),
     ("3", "Extended"),
@@ -104,7 +85,7 @@ SURROUND_TYPE = [
 
 
 SURROUND_COLOR = [
-    ("None", "Select surround color"),
+    ("", "Select surround color"),
     ("1", "Chrome (Standard)"),
     ("2", "Black Anodized"),
     ("3", "Brass"),
@@ -116,11 +97,8 @@ SURROUND_COLOR = [
 	
 
 SURROUND_FORM = [
-    ("None", "Select surround form"),
+    ("", "Select surround form"),
     ("1", "Square"),
     ("0", "Round"),
 ]
-	
-
-	
 	

@@ -15,7 +15,7 @@ def main() -> None:
 
 def get_pressel_types() -> list:
     unique_values = data['Type'].unique()
-    PRESSEL_TYPES = [("None", "Select pressel type")] 
+    PRESSEL_TYPES = [("", "Select pressel type")] 
     for item in unique_values:
         PRESSEL_TYPES.append((item, item))
     return PRESSEL_TYPES
